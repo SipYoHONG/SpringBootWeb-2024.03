@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void registerUser(User user) {
-		uDao.insertUser(null);
+	public void registerUser(User user) { 
+		uDao.insertUser(user);
 		
 	}
 

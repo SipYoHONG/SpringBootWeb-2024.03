@@ -20,9 +20,9 @@ public interface UserDao {
 	@Insert("insert into users values (#{uid}, #{pwd}, #{uname}, #{email}, default, default)")
 	void insertUser(User user);
 	
-	@Update("update users set #{pwd}, #{uname}, #{email} where #{uid}")
+	@Update("update users set pwd=#{pwd}, uname=#{uname}, email=#{email} where uid=#{uid}")
 	void updateUser(User user);
-	
+
 	@Update("update users set isDeleted=1 where uid=#{uid}")
 	void deleteUser(String uid);
 	

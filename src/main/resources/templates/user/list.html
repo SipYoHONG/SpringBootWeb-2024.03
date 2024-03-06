@@ -18,7 +18,7 @@
             <th>uname</th>
             <th>email</th>
             <th>regDate</th>
-            <th>pwd</th>
+            <th>action</th>
         </tr>
         <tr th:each="user: ${userList}">
             <td th:text="${userStat.count}">1</td>
@@ -26,7 +26,10 @@
             <td th:text="${user.uname}">제임스</td>
             <td th:text="${user.email}">james@gmail.com</td>
             <td th:text="${user.regDate}">2024-03-06</td>
-            <td th:text="${user.pwd}">asdaftaras</td>
+            <td style="padding-left: 8px;">
+				<button type="button" th:onclick="|location.href='@{/user/update/{uid}(uid=${user.uid})}'|">수정</button>
+	            <button type="button" th:onclick="|location.href='@{/user/update/{uid}(uid=${user.uid})}'|">취소</button>
+            </td>
         </tr>
     </table>
 </body>
