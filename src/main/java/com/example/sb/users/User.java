@@ -62,6 +62,4 @@ public class User {
 	public void setIsDeleted(int isDeleted) {
 		this.isDeleted = isDeleted;
 	}
-	
-	
 }
