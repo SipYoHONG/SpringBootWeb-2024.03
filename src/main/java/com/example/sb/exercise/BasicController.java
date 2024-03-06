@@ -86,9 +86,10 @@ public class BasicController {
 		}
 	}
 
-	@GetMapping("/path/{uid}/{bid}") 
+	@GetMapping(value={"/path/{uid}/{bid}", "/path/{uid}"}) 
 	@ResponseBody
-	public String path(@PathVariable String uid, @PathVariable int bid) {
+	public String path(@PathVariable String uid, @PathVariable(required=false) Integer bid) {
+		bid = (bid == null) ? 0 : bid;
 		return "<h1>uid=" + uid + ", bid=" + bid + "</h1>";
 	}
 	
