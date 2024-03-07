@@ -52,4 +52,28 @@ public class ThymeleafController {
 	public String params(String uid, int page) {
 		return "<h1>uid=" + uid + ", page=" + page + "</h1>" ;
 	}
+	
+	@GetMapping("/iter")
+	public String iter(Model model) {
+		List<Member> list = new ArrayList<>();
+		list.add(new Member(101, "제임스", 25));
+		list.add(new Member(102, "마리아", 23));
+		list.add(new Member(103, "브라이언", 31));
+		list.add(new Member(104, "사라", 28));
+		model.addAttribute("memberList", list);
+		return "thymeleaf/iter.html";
+	}
+	
+	@GetMapping("/cond")
+	public String cond(Model model) {
+		List<Member> list = new ArrayList<>();
+		list.add(new Member(101, "제임스", 25));
+		list.add(new Member(102, "마리아", 23));
+		list.add(new Member(103, "브라이언", 31));
+		list.add(new Member(104, "사라", 28));
+		model.addAttribute("memberList", list);
+		model.addAttribute("num1", 3);
+		model.addAttribute("num2", 4);
+		return "thymeleaf/cond.html";
+	}
 }
