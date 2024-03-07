@@ -12,10 +12,10 @@
     <h1>사용자 수정</h1>
     <hr>
      <form action="/sb/user/update" method="post">
-        <input type="hidden" name="uid" th:value="${user.uid}">
+        <input type="hidden" name="uid" th:value="${user.uid}"><br><br>
         <input type="text" name="uid" th:value="${user.uid}" disabled><br><br>
-        <input type="password" name="pwd" placeholder="User Password" required><br><br>
-        <input type="password" name="pwd2" placeholder="Password Check" required><br><br>
+        <input type="password" name="pwd" placeholder="패스워드"><br><br>
+        <input type="password" name="pwd2" placeholder="패스워드 확인"><br><br>
         <input type="text" name="uname" th:value="${user.uname}" required><br><br>
         <input type="text" name="email" th:value="${user.email}"><br><br>
         <input type="submit" value="확인" style="margin-left: 80px;">

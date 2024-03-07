@@ -26,9 +26,9 @@
             <td th:text="${user.uname}">제임스</td>
             <td th:text="${user.email}">james@gmail.com</td>
             <td th:text="${user.regDate}">2024-03-06</td>
-            <td style="padding-left: 8px;">
-				<button type="button" th:onclick="|location.href='@{/user/update/{uid}(uid=${user.uid})}'|">수정</button>
-	            <button type="button" th:onclick="|location.href='@{/user/update/{uid}(uid=${user.uid})}'|">취소</button>
+            <td>
+				<a th:href="@{/user/update/{x}(x=${user.uid})}">수정</a>
+				<a th:href="@{/user/delete/{x}(x=${user.uid})}">삭제</a>
             </td>
         </tr>
     </table>

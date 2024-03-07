@@ -38,6 +38,22 @@ public class UserController {
 		return "redirect:/user/list/1";
 	}
 	
+	@GetMapping("/login")
+	public String login() {
+		return "user/login";
+	}
+	
+	@PostMapping("/login")
+	public String loginProc(String uid, String pwd, Model model) {
+		int result = userSvc.login(uid,pwd);
+		if(result == userSvc.CORRECT_LOGIN) {
+			model.addAttribute("msg", userSvc.getUserByUid(uid).getUname() + "님 환영합니다.");
+		} else {
+			model.addAttribute("msg", "아이디가 존재하지 않습니다.");
+		}
+		return "user/loginResult";
+	}
+	
 	 @GetMapping("/update/{uid}")
     public String update(@PathVariable String uid, Model model) {
         User user = userSvc.getUserByUid(uid);
@@ -46,13 +62,14 @@ public class UserController {
     }
     @PostMapping("/update")
     public String updateProc(String uid, String pwd, String pwd2, String uname, String email) {
-        if(pwd.equals(pwd2)) {
+    	User user = userSvc.getUserByUid(uid);
+        if(pwd != null && pwd.equals(pwd2)) {
             String hashedPwd = BCrypt.hashpw(pwd, BCrypt.gensalt());
-            User user = new User(uid, hashedPwd, uname, email);
-            userSvc.updateUser(user);
-        } else {
-            System.out.println("에러" + uid + pwd + pwd2 + uname + email );
-        }
+            user.setPwd(hashedPwd);
+        } 
+        user.setUname(uname);
+        user.setEmail(email);
+        userSvc.updateUser(user);
         return "redirect:/user/list/1";
     }
 
