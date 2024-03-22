@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+     <style>
+        th, td {padding: 3px;}
+        .blue {color: blue;}
+        .red {color: red;}
+        .yellow {background-color: yellow;}
+        .cyan {background-color: cyan;}
+        .beige {background-color: beige;}
+        .orange {background-color: orange;}
+        .skyblue {background-color: skyblue;}
+    </style>
+</head>
+<body style="margin: 50px;">
+    <h1>사용자 목록</h1>
+    <hr>
+        <table>
+        <thead>
+            <tr>
+                <th>Mid</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody>
+             <!-- members 리스트의 각 항목에 대해 반복 -->
+            <tr th:each="member, iterStat : ${members}">
+                <!-- Mid 열: 홀수면 글자색을 blue, 짝수면 red -->
+                <td th:text="${member.mid}" th:class="${iterStat.index % 2 == 0 ? 'blue' : 'red'}">ID</td>
+                <!-- Name 열: 첫번째줄 배경색을 yellow, 마지막줄은 cyan, 나머지는 beige -->
+                <td th:text="${member.name}" th:class="${iterStat.first ? 'yellow' : (iterStat.last ? 'cyan' : 'beige')}">Name</td>
+                <!-- Age 열: 20세 미만이면 글자색을 blue, 20세 이상이면 red -->
+                <td th:text="${member.age}" th:class="${member.age < 20 ? 'blue' : 'red'}">Age</td>
+                <!-- Country 열: 한국이면 배경색을 orange, 미국이면 skyblue, 나머지는 beige -->
+                <td th:text="${member.country}" th:class="${member.country == 'Korea' ? 'orange' : (member.country == 'USA' ? 'skyblue' : 'beige')}">Country</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
